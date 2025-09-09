@@ -31,7 +31,7 @@ const HomeBottomText = () => {
         className="uppercase leading-none tracking-tight whitespace-nowrap text-white"
         style={{
           fontFamily: "'Anton', sans-serif",
-          fontSize: '14vw', // 👈 más bajo que antes
+          fontSize: '15vw', // 👈 más bajo que antes
           lineHeight: 1,
           transform: `translateX(${offset}px) scaleX(${scale})`,
           transformOrigin: 'left center'
