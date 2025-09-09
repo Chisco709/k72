@@ -44,7 +44,10 @@ const FullScreenNav = () => {
   return (
     <div
       ref={fullScreenRef}
-      className="hidden opacity-0 flex-col text-white h-screen w-full z-50 fixed top-0 left-0 bg-gradient-to-br from-[#0a0f29] via-[#0f1b3d] to-[#000000]"
+      className="hidden opacity-0 flex-col text-white h-screen w-full z-50 fixed top-0 left-0"
+      style={{
+        background: 'linear-gradient(135deg, #044BD9 0%, #0336a3 50%, #02265e 100%)'
+      }}
     >
       {/* Header */}
       <div className="flex w-full justify-between p-5 items-start border-b border-white/20">
@@ -65,8 +68,8 @@ const FullScreenNav = () => {
           onClick={() => setNavOpen(false)}
           className="h-10 w-10 relative cursor-pointer"
         >
-          <div className="absolute inset-0 rotate-45 bg-blue-400 h-0.5"></div>
-          <div className="absolute inset-0 -rotate-45 bg-blue-400 h-0.5"></div>
+          <div className="absolute inset-0 rotate-45 bg-white h-0.5"></div>
+          <div className="absolute inset-0 -rotate-45 bg-white h-0.5"></div>
         </div>
       </div>
 
@@ -77,11 +80,11 @@ const FullScreenNav = () => {
             key={i}
             className="nav-link group relative w-full text-center py-6"
           >
-            <span className="text-3xl lg:text-5xl font-light tracking-wide uppercase transition-colors group-hover:text-blue-300">
+            <span className="text-3xl lg:text-5xl font-light tracking-wide uppercase transition-colors group-hover:text-blue-200">
               {item}
             </span>
             {/* underline animado */}
-            <span className="absolute left-1/2 -bottom-2 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-1/2 group-hover:left-1/4"></span>
+            <span className="absolute left-1/2 -bottom-2 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-1/2 group-hover:left-1/4"></span>
           </div>
         ))}
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const CornerVideo = () => {
   return (
-    <div className="absolute bottom-6 right-6 w-[220px] md:w-[300px] rounded-xl overflow-hidden shadow-2xl border border-white/20">
+    <div className="absolute bottom-4 right-10 w-[300px] md:w-[330px] aspect-[16/10] rounded-xl overflow-hidden shadow-2xl border border-white/20">
       <video
         autoPlay
         loop
@@ -10,10 +10,10 @@ const CornerVideo = () => {
         playsInline
         className="w-full h-full object-cover"
       >
-        <source src="." type="video/mp4" />
+        <source src="./renevideos.mp4" type="video/mp4" />
       </video>
-      <button className="absolute bottom-3 left-3 bg-white/90 text-blue-900 text-sm px-4 py-1.5 rounded-full font-semibold hover:bg-white transition">
-        ▶ Ver más
+      <button className="absolute bottom-3 left-3 bg-white/10 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full font-light border border-white/30 hover:bg-white/20 transition">
+        Ver más
       </button>
     </div>
   );
