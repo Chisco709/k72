@@ -1,9 +1,19 @@
 import React from 'react'
+import OptimizedVideo from '../common/OptimizedVideo'
 
 const Video = () => {
   return (
     <div className='h-full w-full'>
-        <video className='h-full w-full object-cover' autoPlay loop muted src="../../../public/renevideo.mp4"></video>
+      <OptimizedVideo
+        src="/renevideo.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        loadingIndicatorSize="lg"
+        className="h-full w-full"
+      />
     </div>
   )
 }
