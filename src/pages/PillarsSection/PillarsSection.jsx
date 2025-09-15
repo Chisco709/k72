@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const PillarsSection = () => {
   return (
@@ -6,8 +7,14 @@ const PillarsSection = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
-          {/* Texto lado izquierdo corrido a la derecha */}
-          <div className="space-y-6 pl-8 lg:pl-12">
+          {/* Texto lado izquierdo con animación */}
+          <motion.div
+            className="space-y-6 pl-8 lg:pl-12"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <h2 className="font-mono text-xs uppercase text-gray-600 tracking-wider">
               ★ PILARES PARA UNA VIDA EXTRAORDINARIA
             </h2>
@@ -22,18 +29,28 @@ const PillarsSection = () => {
                 "Liderazgo",
                 "Felicidad",
               ].map((pilar, index) => (
-                <h3
+                <motion.h3
                   key={index}
                   className="text-6xl lg:text-7xl font-bold text-gray-900 leading-none"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
                   {pilar}
-                </h3>
+                </motion.h3>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Imagen lado derecho */}
-          <div className="relative">
+          {/* Imagen lado derecho con animación */}
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
                 src="imagentin.jpg"
@@ -42,7 +59,7 @@ const PillarsSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
