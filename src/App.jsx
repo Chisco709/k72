@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Home from './pages/Home/Home'
+const Home = lazy(() => import('./pages/Home/Home'))
 import Navbar from './navigation/Navbar/Navbar'
 import PromotionalBanner from './components/common/Banner' // ya la tenías
 import { menuItems, bannerConfig } from './pages/constants/menuConfig' // <-- nueva importación
@@ -22,9 +22,11 @@ const App = () => {
       <Navbar menuItems={menuItems} />
 
       {/* Rutas */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <Suspense fallback={<div className="opacity-0" aria-hidden="true" />}> 
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Suspense>
     </div>
   )
 }

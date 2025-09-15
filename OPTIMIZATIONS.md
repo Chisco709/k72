@@ -8,8 +8,9 @@
 - **Mejora adicional**: Implementado lazy loading real con Intersection Observer
 
 ### 2. **Optimizaciones de Vite**
-- **Minificación**: Terser con eliminación de console.log en producción
-- **Code Splitting**: División inteligente de chunks (vendor, router, animation)
+- Target `es2020`, `modulePreload.polyfill=false`, `cssCodeSplit`, `reportCompressedSize=false`
+- `treeshake: 'recommended'` y `manualChunks` (react, router, animation, motion, icons)
+- **Minificación**: Terser con eliminación de console/debugger
 - **Asset Optimization**: Inline de assets menores a 4KB
 - **Dependency Optimization**: Pre-bundling de dependencias críticas
 
@@ -109,7 +110,7 @@ const {
 3. **WebM** para videos (mejor compresión)
 4. **Critical CSS** inlining
 5. **Resource Hints** adicionales
-6. **Bundle Analysis** con webpack-bundle-analyzer
+6. **Bundle Analysis** con rollup-plugin-visualizer
 
 ## 🚀 Cómo Usar
 

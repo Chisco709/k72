@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content="K72 - Portfolio creativo y profesional" />
     
     <!-- Preconnect para optimizar carga de fuentes -->
@@ -10,13 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Fuentes optimizadas - solo las necesarias -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Bebas+Neue&family=Anton&family=Founders+Grotesk+X+Condensed:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    </noscript>
     
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <title>K72 - Portfolio Creativo</title>
   </head>
   <body>
     <div id="root"></div>
+    <link rel="preload" as="image" href="/hero.webp" importance="high">
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

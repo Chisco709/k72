@@ -36,20 +36,5 @@ export default {
     },
   },
   plugins: [],
-  // Optimización de purging
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      './src/**/*.{js,jsx,ts,tsx}',
-      './index.html',
-    ],
-    options: {
-      safelist: [
-        'animate-spin',
-        'transition-opacity',
-        'duration-300',
-        'duration-500',
-      ],
-    },
-  },
+  // Tailwind v3+ usa content para purga, se elimina config 'purge' legacy
 }
