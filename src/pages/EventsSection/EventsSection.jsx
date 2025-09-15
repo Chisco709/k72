@@ -7,57 +7,82 @@ const EventsSection = () => {
   const events = [
     {
       id: 1,
-      title: "BUSINESS",
-      title2: "MASTERY", 
-      subtitle: "TONY ROBBINS",
-      description: "Grow your business exponentially",
-      image: "/1000052765.jpg", // Imagen de persona trabajando con documentos vista desde arriba
+      title: "COACHING",
+      title2: "", 
+      subtitle: "RENE CHISCO",
+      description: "Esto es texto un borrador",
+      image: "/1000052765.jpg",
       bgColor: ""
     },
     {
       id: 2,
-      title: "LEADERSHIP",
-      title2: "ACADEMY",
-      subtitle: "TONY ROBBINS", 
-      description: "Become a great leader",
-      image: "/leadership-bg.jpg", // Imagen con luces azules de escenario
-      bgColor: "from-purple-900/90 to-indigo-900/80"
+      title: "TALLERES",
+      title2: "",
+      subtitle: "RENE CHISCO", 
+      description: "Este texto es un borrador",
+      image: "/segundaimagen.jpg",
+      bgColor: ""
     },
     {
       id: 3,
-      title: "DATE WITH",
-      title2: "DESTINY",
-      subtitle: "TONY ROBBINS",
-      description: "Create life according to your terms", 
-      image: "/destiny-bg.jpg", // Imagen de montañas con silueta de persona
-      bgColor: "from-blue-300/20 to-blue-600/40"
+      title: "ARMONIZA TU",
+      title2: "VIDA",
+      subtitle: "RENECHISCO",
+      description: "Una Pedagogía para prevenir y enfrentar el estrés", 
+      image: "/armonizatuvida1.png",
+      bgColor: ""
     },
     {
       id: 4,
-      title: "UNLEASH",
-      title2: "THE POWER WITHIN",
-      subtitle: "TONY ROBBINS",
-      description: "Experience explosive growth",
-      image: "/unleash-bg.jpg", // Imagen de Tony Robbins hablando
-      bgColor: "from-orange-900/90 to-amber-900/80"
+      title: "DEL CAMBIO A",
+      title2: "LA TRANSFORMACIÓN",
+      subtitle: "RENE CHISCO",
+      description: "Despierta tu mejor versión",
+      image: "/cambio.png",
+      bgColor: ""
     },
     {
       id: 5,
-      title: "LIFE",
-      title2: "MASTERY", 
-      subtitle: "TONY ROBBINS",
+      title: "DESCUBRE TU",
+      title2: "MEJOR VERSIÓN", 
+      subtitle: "RENE CHISCO",
       description: "Master mind and body",
-      image: "/life-mastery-bg.jpg", // Imagen con batido verde y plantas
-      bgColor: "from-green-800/90 to-green-700/80"
-    }
+      image: "/descubre.png",
+      bgColor: ""
+    },
+  {
+    id: 6,
+    title: "LAS PALANCAS",
+    title2: "DEL PODER PERSONAL", 
+    subtitle: "RENE CHISCO",
+    description: "Descubre cómo activar tu fuerza interior",
+    image: "/las palancaspoder.png",   // coloca la ruta de tu imagen
+    bgColor: ""
+  },
+  {
+    id: 7,
+    title: "VENCE TU",
+    title2: "TIMIDEZ", 
+    subtitle: "RENE CHISCO",
+    description: "Aprende a expresarte con seguridad",
+    image: "/vencetimidez.png",   // coloca la ruta de tu imagen
+    bgColor: ""
+  }
   ];
 
+  // Número de tarjetas visibles
+  const visibleCards = 4;
+
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % Math.max(1, events.length - 4));
+    setCurrentSlide((prev) =>
+      prev + 1 > events.length - visibleCards ? 0 : prev + 1
+    );
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + Math.max(1, events.length - 4)) % Math.max(1, events.length - 4));
+    setCurrentSlide((prev) =>
+      prev - 1 < 0 ? events.length - visibleCards : prev - 1
+    );
   };
 
   const goToSlide = (index) => {
@@ -71,9 +96,9 @@ const EventsSection = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-16">
           <div className="flex items-center space-x-8">
-            <h2 className="text-5xl font-bold">Events that liberate</h2>
+            <h2 className="text-5xl font-bold">Programas que liberan</h2>
             <div className="flex items-center text-gray-400 hover:text-white transition-colors cursor-pointer group">
-              <span className="text-base font-medium">Discover events</span>
+              <span className="text-base font-medium">Descubre nuestros programas</span>
               <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
@@ -101,24 +126,22 @@ const EventsSection = () => {
         <div className="relative overflow-hidden">
           <div 
             className="flex transition-transform duration-700 ease-out"
-            style={{ transform: `translateX(-${currentSlide * 20}%)` }}
+            style={{ transform: `translateX(-${currentSlide * (100 / visibleCards)}%)` }}
           >
-            {events.map((event, index) => (
+            {events.map((event) => (
               <div
                 key={event.id}
-                className="w-[20%] flex-shrink-0 px-3"
+                className="w-[25%] flex-shrink-0 px-3" // ancho más grande
               >
-                <div className="relative h-[440px] rounded-2xl overflow-hidden group cursor-pointer">
+                <div className="relative h-[460px] rounded-2xl overflow-hidden group cursor-pointer">
                   
                   {/* Background Image */}
                   <div className="absolute inset-0">
-                    {/* Imagen de fondo real */}
                     <img 
                       src={event.image}
                       alt={`${event.title} ${event.title2}`}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
-                    {/* Overlay con gradiente */}
                     <div className={`absolute inset-0 bg-gradient-to-t ${event.bgColor}`}></div>
                     <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/60"></div>
                   </div>
@@ -135,25 +158,26 @@ const EventsSection = () => {
 
                     {/* Bottom content */}
                     <div className="space-y-4">
-                      <div className="relative">
-                        {/* SVG Text styling para títulos elegantes */}
-                        <div className="text-white">
-                          <div className="text-2xl font-black leading-tight tracking-tight uppercase" 
-                               style={{
-                                 fontFamily: 'system-ui, -apple-system, sans-serif',
-                                 textShadow: '0 2px 4px rgba(0,0,0,0.5)',
-                                 letterSpacing: '0.02em'
-                               }}>
-                            {event.title}
-                          </div>
-                          <div className="text-2xl font-black leading-tight tracking-tight uppercase"
-                               style={{
-                                 fontFamily: 'system-ui, -apple-system, sans-serif', 
-                                 textShadow: '0 2px 4px rgba(0,0,0,0.5)',
-                                 letterSpacing: '0.02em'
-                               }}>
-                            {event.title2}
-                          </div>
+                      <div className="relative text-center">
+                        <div
+                          className="text-xl md:text-2xl font-black leading-snug tracking-tight uppercase whitespace-normal"
+                          style={{
+                            fontFamily: 'system-ui, -apple-system, sans-serif',
+                            textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                            letterSpacing: '0.02em',
+                          }}
+                        >
+                          {event.title}
+                        </div>
+                        <div
+                          className="text-xl md:text-2xl font-black leading-snug tracking-tight uppercase whitespace-normal"
+                          style={{
+                            fontFamily: 'system-ui, -apple-system, sans-serif',
+                            textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                            letterSpacing: '0.02em',
+                          }}
+                        >
+                          {event.title2}
                         </div>
                       </div>
                       <p className="text-white/90 text-sm font-medium leading-relaxed">
@@ -172,7 +196,7 @@ const EventsSection = () => {
 
         {/* Dots indicator */}
         <div className="flex justify-center mt-12 space-x-3">
-          {[0, 1, 2].map((index) => (
+          {[...Array(events.length - visibleCards + 1)].map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}

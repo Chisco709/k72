@@ -15,13 +15,8 @@ export const menuItems = [
       { label: "Programa 2", href: "/programs/2" }
     ]
   },
-  {
-    title: "Eventos",
-    items: [
-      { label: "Próximos Eventos", href: "/events/upcoming" },
-      { label: "Eventos Pasados", href: "/events/past" }
-    ]
-  },
+
+    
   { title: "Coaching", href: "/coaching" },
   { title: "Explorar", href: "/explore" },
   { title: "Tienda", href: "/shop" }
