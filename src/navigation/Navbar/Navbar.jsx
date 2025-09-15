@@ -54,11 +54,11 @@ const Navbar = ({ logoText = "RENE CHISCO", menuItems = [] }) => {
     <>
       <nav
         ref={navRef}
-        className="fixed top-10 left-0 w-full bg-black/90 backdrop-blur-md text-white px-6 py-4 z-40 shadow-md transition-all duration-300"
+        className="fixed top-0 lg:top-10 left-0 w-full bg-black/90 backdrop-blur-md text-white px-4 lg:px-6 py-3 lg:py-4 z-40 shadow-md transition-all duration-300"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <div className="text-white font-bold text-2xl tracking-wider flex-shrink-0">
+          <div className="text-white font-bold text-xl lg:text-2xl tracking-wider flex-shrink-0">
             <a
               href="/"
               className="hover:text-gray-300 transition-colors focus:outline-none focus:text-gray-300"
@@ -93,7 +93,7 @@ const Navbar = ({ logoText = "RENE CHISCO", menuItems = [] }) => {
           </div>
 
           {/* Right side */}
-          <div className="flex items-center space-x-4 lg:space-x-6 flex-shrink-0">
+          <div className="flex items-center space-x-3 lg:space-x-6 flex-shrink-0">
             {/* Search */}
             <button
               className="p-2 hover:text-gray-300 transition-colors focus:outline-none focus:text-gray-300 rounded-md"
