@@ -1,0 +1,7 @@
+,Producto,Cantidad,Precio_Unitario,Total,Rango_Precios
+0,Lapices,100.0,500,50000.0,Entre cero y mil
+1,Cuadernos,50.0,2000,100000.0,Entre mil y dos mil 
+2,Marcadores,200.0,800,160000.0,Entre cero y mil
+3,Resaltadores,150.0,1200,180000.0,Entre mil y dos mil 
+4,Carpetas,80.0,2500,200000.0,Dos mil y tres mil
+5,Borradores,116.0,1500,,

@@ -8,8 +8,7 @@ const AboutSection = () => {
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
         <svg
           className="relative block w-full h-24 lg:h-40"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
+          viewBox="0 0 1440 320" 
           preserveAspectRatio="none"
         >
           <path

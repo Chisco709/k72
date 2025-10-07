@@ -4,6 +4,10 @@ import EventsSection from "../EventsSection/EventsSection";
 import HeroVideo from "../video/video"
 import PillarsSection from "../PillarsSection/PillarsSection";
 import AboutSection from "../Hunger/HungerSection";
+import CoachingPage from "../../components/section/section";
+import ImagenFinal from "../../components/imagen-final/imagen-final"
+import TestimonialsSection from "../../pages/testimonial/testimonial-section"
+import CTASection from "../../pages/cta/cta-section"
 
 const Home = () => {
   return (
@@ -13,6 +17,9 @@ const Home = () => {
       <HeroVideo/>
       <PillarsSection/>
       <AboutSection/>
+      <CoachingPage/>
+      <TestimonialsSection/>
+      <CTASection/>
     </div>
   );
 };
