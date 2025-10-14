@@ -42,7 +42,7 @@ const HeroVideo = () => {
           </div>
 
           <div className="pt-4">
-            <a href="/start" className="inline-block">
+            <a href="/inicio-transformacion" className="inline-block">
               <span className="cursor-pointer group inline-flex items-center justify-center gap-2 font-medium text-center tracking-wide rounded-full duration-500 border border-white bg-white hover:bg-gray-100 text-black w-auto text-sm md:text-base py-3 md:py-4 px-6 md:px-8">
                 <span>Inicia ahora</span>
               </span>

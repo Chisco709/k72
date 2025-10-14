@@ -7,7 +7,7 @@ import AboutSection from "../Hunger/HungerSection";
 import CoachingPage from "../../components/section/section";
 import ImagenFinal from "../../components/imagen-final/imagen-final"
 import TestimonialsSection from "../../pages/testimonial/testimonial-section"
-import CTASection from "../../pages/cta/cta-section"
+import Footer from "../../pages/footer/footer"
 
 const Home = () => {
   return (
@@ -19,7 +19,7 @@ const Home = () => {
       <AboutSection/>
       <CoachingPage/>
       <TestimonialsSection/>
-      <CTASection/>
+      <Footer/>
     </div>
   );
 };

@@ -1,25 +1,33 @@
 // src/constants/menuConfig.js
 export const menuItems = [
   {
-    title: "Sobre Nosotros",
+    title: "Servicios",
     items: [
-      { label: "Nuestra Historia", href: "/about/history" },
-      { label: "Equipo", href: "/about/team" },
-      { label: "Misión", href: "/about/mission" }
+      { label: "Coaching", href: "/servicios/coaching" },
+      { label: "Conferencias y Talleres", href: "/servicios/conferencias" },
+      { label: "Armoniza tu vida", href: "/servicios/armonizatuvida" },
+      { label: "Del cambio a la transformación", href: "/servicios/transformación" },
+      { label: "Descubre tu mejor versión", href: "/servicios/mejorversión" },
+      { label: "Armoniza tu vida", href: "/servicios/armonizatuvida" },
+      { label: "Las palancas del poder personal", href: "/servicios/palancas" }
+
+
+
+
+
     ]
   },
   {
-    title: "Programas",
+    title: "Productos",
     items: [
-      { label: "Programa 1", href: "/programs/1" },
-      { label: "Programa 2", href: "/programs/2" }
+      { label: "Del cambio a la transformación", href: "/producto/1" },
     ]
   },
 
     
-  { title: "Coaching", href: "/coaching" },
-  { title: "Explorar", href: "/explore" },
-  { title: "Tienda", href: "/shop" }
+  { title: "Blog", href: "/blog" },
+  { title: "Retos", href: "/multimedia" },
+  { title: "Carrito", href: "/carrito" }
 ];
 
 export const bannerConfig = {

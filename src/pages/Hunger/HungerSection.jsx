@@ -43,7 +43,7 @@ const AboutSection = () => {
             la salud y el liderazgo.
           </p>
           <a
-            href="#"
+            href="/inicio-transformacion"
             className="inline-block px-8 py-4 border border-white rounded-full font-semibold uppercase tracking-wide hover:bg-white hover:text-black transition duration-300"
           >
             Descubre más

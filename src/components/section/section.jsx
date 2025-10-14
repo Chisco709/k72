@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+
+
 const Button = ({ children, className, ...props }) => (
   <button className={className} {...props}>
     {children}
@@ -38,14 +41,15 @@ export default function CoachingPage() {
               en resultados.
             </p>
 
-            <div className="flex flex-col gap-4 pt-4">
-              <Button className="bg-black hover:bg-black/90 text-white rounded-full px-10 py-7 text-base font-semibold w-full lg:w-auto">
-                Coaching de resultados
-              </Button>
-              <Button className="bg-blue-600 hover:bg-blue-600/90 text-white rounded-full px-10 py-7 text-base font-semibold w-full lg:w-auto">
-                Coaching empresarial
-              </Button>
-            </div>
+            
+<div className="flex flex-col gap-4 pt-4">
+  <Link to="/servicios/coaching">
+    <Button className="bg-blue-600 hover:bg-blue-600/90 text-white rounded-full px-10 py-7 text-base font-semibold w-full lg:w-auto">
+      Coaching
+    </Button>
+  </Link>
+</div>
+
           </div>
 
           {/* Columna derecha */}

@@ -1,12 +1,24 @@
+// src/components/ui/button.jsx
 import React from "react";
 
-const Button = ({ children, className = "", ...props }) => (
-  <button
-    className={`transition font-semibold rounded-full px-10 py-4 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#FF9500] focus:ring-offset-2 ${className}`}
-    {...props}
-  >
-    {children}
-  </button>
-);
+/**
+ * Button — exporta por defecto y también como named export { Button }
+ * Esto evita errores si en distintos archivos se usa import Button from '...' o import { Button } from '...'
+ */
+function ButtonComponent({ children, className = "", size = "md", ...props }) {
+  const sizeClasses =
+    size === "lg" ? "px-10 py-4 text-lg" : size === "sm" ? "px-3 py-2 text-sm" : "px-4 py-2 text-base";
 
-export { Button };
+  return (
+    <button
+      type={props.type || "button"}
+      className={`inline-flex items-center justify-center rounded ${sizeClasses} ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
+export default ButtonComponent;
+export { ButtonComponent as Button };

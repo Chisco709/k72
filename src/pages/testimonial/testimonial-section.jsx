@@ -167,11 +167,7 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        <div className="mt-12 flex justify-center">
-          <button className="rounded-full border border-zinc-800 bg-zinc-900 px-8 py-3 font-medium text-white transition-all hover:bg-zinc-800 hover:shadow-lg">
-            Conoce más historias
-          </button>
-        </div>
+       
       </div>
     </section>
   )

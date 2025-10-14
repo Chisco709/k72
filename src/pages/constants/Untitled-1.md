@@ -1,0 +1,45 @@
+```
+└── 📁src
+    └── 📁components
+        └── 📁common
+            ├── Banner.jsx
+        └── 📁imagen-final
+            ├── imagen-final.jsx
+        └── 📁Navigation
+        └── 📁section
+            ├── section.jsx
+        └── 📁ui
+            ├── button.jsx
+        ├── testimonial.jsx
+    └── 📁navigation
+        └── 📁Navbar
+            ├── DropdownItem.jsx
+            ├── Layout.jsx
+            ├── MobileMenu.jsx
+            ├── Navbar.jsx
+    └── 📁pages
+        └── 📁constants
+            ├── menuConfig.js
+        └── 📁EventsSection
+            ├── EventsSection.jsx
+        └── 📁footer
+            ├── footer.jsx
+        └── 📁Hero
+            ├── Hero.jsx
+        └── 📁Home
+            ├── Home.jsx
+        └── 📁Hunger
+            ├── HungerSection.jsx
+        └── 📁PillarsSection
+            ├── PillarsSection.jsx
+        └── 📁servicios
+            └── 📁coaching
+                ├── coaching_page.tsx
+        └── 📁testimonial
+            ├── testimonial-section.jsx
+        └── 📁video
+            ├── video.jsx
+    ├── App.jsx
+    ├── index.css
+    └── main.jsx
+```
