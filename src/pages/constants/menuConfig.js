@@ -18,15 +18,12 @@ export const menuItems = [
     ]
   },
   {
-    title: "Productos",
-    items: [
-      { label: "Del cambio a la transformación", href: "/producto/1" },
-    ]
+    title: "Productos", href: "/productos"
   },
 
     
   { title: "Blog", href: "/blog" },
-  { title: "Retos", href: "/multimedia" },
+  { title: "Retos", href: "/retos" },
   { title: "Carrito", href: "/carrito" }
 ];
 
