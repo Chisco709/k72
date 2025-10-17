@@ -12,6 +12,11 @@ export default defineConfig({
     cssCodeSplit: true,
     reportCompressedSize: false,
     minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    },
     terserOptions: {
       compress: {
         drop_console: true,
