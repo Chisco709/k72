@@ -1,5 +1,5 @@
-import React from "react";
-import Button from "../../../components/ui/button"; // ✅ Ajuste para Vite
+// src/pages/ConferenciasPage.jsx
+import React, { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   Users,
@@ -8,336 +8,120 @@ import {
   Sparkles,
   Award,
   TrendingUp,
+  Zap,
+  Brain,
+  Heart,
+  CheckCircle2,
 } from "lucide-react";
+import { Button } from "../../../components/ui/button";
 
 export default function ConferenciasPage() {
+  const heroRef = useRef(null);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+      if (heroRef.current) {
+        const scrolled = window.scrollY;
+        heroRef.current.style.transform = `translateY(${scrolled * 0.3}px)`;
+        heroRef.current.style.opacity = `${Math.max(0, 1 - scrolled / 600)}`;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white text-[#0A1628]">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0A1628] via-[#0d1d35] to-[#0A1628] text-white">
-        {/* Luces decorativas */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-24 left-10 w-72 h-72 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-24 right-10 w-96 h-96 bg-blue-400 rounded-full blur-3xl" />
+    <div className="min-h-screen bg-white">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-black via-zinc-900 to-black">
+        {/* Luces suaves de fondo */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-white/[0.03] rounded-full blur-[120px] animate-pulse"
+            style={{ animationDuration: "8s" }}
+          />
+          <div
+            className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-[100px] animate-pulse"
+            style={{ animationDuration: "10s", animationDelay: "2s" }}
+          />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 py-32 lg:py-40">
-          {/* Encabezado */}
-          <div className="flex items-center gap-2 mb-6">
-            <div className="h-px w-12 bg-white/40" />
-            <span className="text-sm tracking-[0.3em] uppercase text-white/70">
-              Conferencias
-            </span>
-          </div>
-
-          <h1 className="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight">
-            Transformación
-            <br />
-            <span className="text-white/60">a través del</span>
-            <br />
-            Conocimiento
-          </h1>
-
-          <p className="text-xl text-white/80 max-w-2xl mb-12 leading-relaxed">
-            Experiencias diseñadas para inspirar, educar y elevar el potencial
-            humano en organizaciones y profesionales.
-          </p>
-
-          <div className="flex flex-wrap gap-4">
-            <Button
-              size="lg"
-              className="bg-white text-[#0A1628] hover:bg-white/90 transition-all group"
-            >
-              Solicitar información
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-
-            <Button
-              size="lg"
-              className="border border-white/30 text-white hover:bg-white/10 bg-transparent"
-            >
-              Ver calendario
-            </Button>
-          </div>
+        {/* Rejilla sutil */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+              backgroundSize: "100px 100px",
+            }}
+          />
         </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-20 border-b border-zinc-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
-            {[
-              { value: "500+", label: "Conferencias realizadas" },
-              { value: "15K+", label: "Profesionales impactados" },
-              { value: "98%", label: "Satisfacción" },
-              { value: "20+", label: "Años de experiencia" },
-            ].map((stat, i) => (
-              <div
-                key={i}
-                className="text-center group hover:scale-105 transition-transform duration-300"
-              >
-                <div className="text-4xl lg:text-5xl font-bold text-[#0A1628] mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-zinc-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+        {/* Líneas decorativas */}
+        <div className="absolute inset-0 overflow-hidden opacity-[0.08]">
+          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-white/50 to-transparent" />
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-white/50 to-transparent" />
         </div>
-      </section>
 
-      {/* Conferencias principales */}
-      <section className="py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0A1628]/5 mb-6">
-              <Sparkles className="h-4 w-4 text-[#0A1628]" />
-              <span className="text-sm font-medium">Programas destacados</span>
+        {/* Contenido principal */}
+        <div ref={heroRef} className="relative w-full py-32 flex items-center justify-center text-white">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.08] backdrop-blur-xl border border-white/10 mb-12 animate-fade-in">
+              <Sparkles className="h-4 w-4 text-white" />
+              <span className="text-xs tracking-[0.25em] uppercase font-light text-white/90">
+                Experiencias que Transforman
+              </span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-              Nuestras Conferencias
-            </h2>
-            <p className="text-lg text-zinc-600 max-w-2xl mx-auto">
-              Experiencias transformadoras diseñadas para impulsar el crecimiento
-              personal y organizacional.
+
+            <div className="mb-10 space-y-3">
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[0.95] tracking-tight">
+                <span className="block opacity-0 animate-slide-up-refined" style={{ animationDelay: "0.2s" }}>
+                  Conferencias
+                </span>
+                <span
+                  className="block text-white/20 text-4xl sm:text-5xl lg:text-6xl opacity-0 animate-slide-up-refined italic font-light mt-2"
+                  style={{ animationDelay: "0.4s" }}
+                >
+                  que
+                </span>
+                <span className="block opacity-0 animate-slide-up-refined mt-2" style={{ animationDelay: "0.6s" }}>
+                  Inspiran
+                </span>
+              </h1>
+            </div>
+
+            <p
+              className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-3xl mx-auto mb-16 font-light leading-relaxed opacity-0 animate-fade-in"
+              style={{ animationDelay: "0.8s" }}
+            >
+              Donde el conocimiento se encuentra con la emoción
+              <br className="hidden sm:block" />
+              para crear experiencias inolvidables
             </p>
           </div>
-
-          {/* Conferencia 1: Oratoria */}
-          <div className="mb-24 group">
-            <div className="grid lg:grid-cols-2 gap-14 items-center">
-              {/* Texto */}
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0A1628] text-white text-xs font-medium mb-6">
-                  <Award className="h-3 w-3" />
-                  Programa insignia
-                </div>
-
-                <h3 className="text-4xl lg:text-5xl font-bold mb-4">
-                  Oratoria
-                </h3>
-                <p className="text-xl text-[#0A1628]/60 mb-4 italic">
-                  El Arte de Hablar y Disfrutar
-                </p>
-                <p className="text-lg text-zinc-700 mb-8 leading-relaxed">
-                  Transforma el miedo escénico en confianza y convierte tus ideas
-                  en mensajes que inspiran y conectan.
-                </p>
-
-                <ul className="space-y-3 mb-8">
-                  {[
-                    "Superar el miedo escénico y desarrollar confianza",
-                    "Dominar la expresión verbal y no verbal",
-                    "Construir mensajes memorables",
-                    "Conectar con cualquier audiencia",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#0A1628] flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-wrap gap-6 mb-8 text-sm text-zinc-600">
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
-                    <span>20 horas</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4" />
-                    <span>Grupos reducidos</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Target className="h-4 w-4" />
-                    <span>Práctica intensiva</span>
-                  </div>
-                </div>
-
-                <Button className="bg-[#0A1628] hover:bg-[#0A1628]/90 group">
-                  Más información
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-
-              {/* Tarjeta lateral */}
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-br from-[#0A1628]/10 to-transparent rounded-3xl blur-2xl" />
-                <div className="relative bg-gradient-to-br from-[#0A1628] to-[#1a2d4a] rounded-2xl p-10 text-white shadow-xl">
-                  <div className="space-y-8">
-                    <div>
-                      <div className="text-sm text-white/70 mb-2">Dirigido a</div>
-                      <p className="text-lg">
-                        Profesionales, líderes, docentes y emprendedores
-                      </p>
-                    </div>
-                    <hr className="border-white/20" />
-                    <div>
-                      <div className="text-sm text-white/70 mb-2">
-                        Módulos principales
-                      </div>
-                      <ul className="space-y-2 text-sm">
-                        {[
-                          "El Orador: Voz, presencia y emoción",
-                          "El Mensaje: Estructura y persuasión",
-                          "El Público: Conexión y empatía",
-                        ].map((m, i) => (
-                          <li key={i} className="flex items-center gap-2">
-                            <div className="h-1 w-1 rounded-full bg-white/60" />
-                            <span>{m}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <hr className="border-white/20" />
-                    <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
-                      <div className="text-sm text-white/80 mb-2">
-                        Resultado esperado
-                      </div>
-                      <p className="text-base leading-relaxed">
-                        Dominio total de la oratoria para comunicar con impacto y
-                        autenticidad.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Conferencia 2: Marketing Emocional */}
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
-            {/* Tarjeta lateral */}
-            <div className="relative order-2 lg:order-1">
-              <div className="absolute -inset-4 bg-gradient-to-br from-zinc-900/10 to-transparent rounded-3xl blur-2xl" />
-              <div className="relative bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-10 text-white shadow-xl">
-                <div className="space-y-8">
-                  <div>
-                    <div className="text-sm text-white/60 mb-2">Casos de estudio</div>
-                    <ul className="space-y-3">
-                      {["Disney", "Cirque du Soleil", "Zappos", "Starbucks"].map(
-                        (brand, i) => (
-                          <li key={i} className="flex items-center gap-3 text-lg">
-                            <div className="h-2 w-2 rounded-full bg-white/60" />
-                            <span>{brand}</span>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                  </div>
-                  <hr className="border-white/20" />
-                  <div>
-                    <div className="text-sm text-white/70 mb-2">Aprenderás a</div>
-                    <ul className="space-y-2 text-sm">
-                      {[
-                        "Diseñar experiencias memorables",
-                        "Cultivar cultura organizacional",
-                        "Fidelizar clientes auténticamente",
-                      ].map((m, i) => (
-                        <li key={i} className="flex items-center gap-2">
-                          <div className="h-1 w-1 rounded-full bg-white/60" />
-                          <span>{m}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <hr className="border-white/20" />
-                  <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
-                    <div className="text-sm text-white/80 mb-2">
-                      Impacto organizacional
-                    </div>
-                    <p className="text-base leading-relaxed">
-                      Eleva la calidad del servicio y crea vínculos emocionales
-                      duraderos con tus clientes.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Texto */}
-            <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 text-white text-xs font-medium mb-6">
-                <TrendingUp className="h-3 w-3" />
-                Transformación organizacional
-              </div>
-
-              <h3 className="text-4xl lg:text-5xl font-bold mb-4">
-                Marketing Emocional
-              </h3>
-              <p className="text-xl text-[#0A1628]/60 mb-4 italic">
-                Gerencia del Detalle y Calidad de la Experiencia
-              </p>
-              <p className="text-lg text-zinc-700 mb-8 leading-relaxed">
-                Descubre cómo las marcas más admiradas diseñan experiencias que
-                trascienden productos y crean conexiones emocionales profundas.
-              </p>
-
-              <ul className="space-y-3 mb-8">
-                {[
-                  "Diseñar experiencias de calidad que generen lealtad",
-                  "Construir cultura corporativa auténtica",
-                  "Implementar servicio excepcional",
-                  "Crear vínculos emocionales con clientes y colaboradores",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#0A1628] flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap gap-6 mb-8 text-sm text-zinc-600">
-                <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4" />
-                  <span>Equipos directivos</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Target className="h-4 w-4" />
-                  <span>Personalizable</span>
-                </div>
-              </div>
-
-              <Button className="bg-zinc-900 hover:bg-zinc-800 group">
-                Más información
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="py-24 bg-gradient-to-br from-[#0A1628] via-[#0d1d35] to-[#0A1628] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-400 rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            ¿Listo para transformar tu organización?
-          </h2>
-          <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
-            Agenda una consulta personalizada y descubre cómo nuestras
-            conferencias pueden impulsar el crecimiento de tu equipo.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-white text-[#0A1628] hover:bg-white/90 group"
-            >
-              Agendar consulta
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              className="border border-white/30 text-white hover:bg-white/10 bg-transparent"
-            >
-              Descargar brochure
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Animaciones globales */}
+      <style>{`
+        @keyframes slide-up-refined {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fade-in {
+          from { opacity: 0; } to { opacity: 1; }
+        }
+        .animate-slide-up-refined {
+          animation: slide-up-refined 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-fade-in {
+          animation: fade-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
     </div>
   );
 }
