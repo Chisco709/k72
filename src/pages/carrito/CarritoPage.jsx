@@ -77,35 +77,46 @@ export default function CarritoPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
-    // Construir mensaje para WhatsApp
-    const items = cart.map(item => 
-      `• ${item.title} (x${item.quantity}) - ${formatCOP(item.price * item.quantity)}`
-    ).join('\n')
-    
-    const mensaje = `
-🛒 *Nueva Orden de Compra*
+    // Enviar la orden al backend y obtener la URL de WhatsApp para finalizar
+    const payload = {
+      customer: {
+        nombre: formData.nombre,
+        email: formData.email,
+        telefono: formData.telefono,
+        mensaje: formData.mensaje
+      },
+      items: cart.map(item => ({ id: item.id, title: item.title, quantity: item.quantity, price: item.price })),
+      total: getTotal()
+    }
 
-📋 *Productos:*
-${items}
-
-💰 *Total:* ${formatCOP(getTotal())}
-
-👤 *Datos del Cliente:*
-Nombre: ${formData.nombre}
-Email: ${formData.email}
-Teléfono: ${formData.telefono}
-
-${formData.mensaje ? `📝 Mensaje: ${formData.mensaje}` : ''}
-    `.trim()
-
-    // Número de WhatsApp (cambiar por el real)
-    const whatsappNumber = '573001234567'
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensaje)}`
-    
-    window.open(whatsappUrl, '_blank')
-    clearCart()
-    navigate('/')
+    fetch((import.meta.env.VITE_API_URL || '') + '/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error('Error creando la orden')
+        return await res.json()
+      })
+      .then((data) => {
+        // Abrir WhatsApp con el mensaje preparado por el backend
+        if (data.whatsappUrl) {
+          window.open(data.whatsappUrl, '_blank')
+        }
+        clearCart()
+        navigate('/')
+      })
+      .catch((err) => {
+        console.error(err)
+        // Fallback: construir mensaje localmente
+        const itemsText = cart.map(item => `• ${item.title} (x${item.quantity}) - ${formatCOP(item.price * item.quantity)}`).join('\n')
+        const mensaje = `Nueva orden:\n${itemsText}\nTotal: ${formatCOP(getTotal())}\nNombre: ${formData.nombre}`
+        const whatsappNumber = '573001234567'
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensaje)}`
+        window.open(whatsappUrl, '_blank')
+        clearCart()
+        navigate('/')
+      })
   }
 
   if (cart.length === 0 && !searchParams.get('programa')) {

@@ -13,18 +13,6 @@ export default defineConfig({
     reportCompressedSize: false,
     minify: 'terser',
     rollupOptions: {
-      output: {
-        manualChunks: undefined
-      }
-    },
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
-    // División de chunks para mejor caching
-    rollupOptions: {
       treeshake: 'recommended',
       output: {
         manualChunks: {
@@ -34,6 +22,12 @@ export default defineConfig({
           motion: ['framer-motion'],
           icons: ['lucide-react'],
         },
+      },
+    },
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
       },
     },
     // Configuración de assets

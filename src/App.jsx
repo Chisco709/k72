@@ -4,6 +4,7 @@ import { CartProvider } from './context/CartContext'
 import Navbar from './navigation/Navbar/Navbar'
 import PromotionalBanner from './components/common/Banner'
 import { menuItems, bannerConfig } from './pages/constants/menuConfig'
+import LoadingSpinner from './components/ui/LoadingSpinner'
 
 const Home = lazy(() => import('./pages/Home/Home'))
 const Coaching = lazy(() => import('./pages/servicios/coaching/CoachingPage'))
@@ -12,8 +13,11 @@ const Carrito = lazy(() => import("./pages/carrito/CarritoPage"))
 const ArmonizaTuVidaPage = lazy(() => import("./pages/armonizatuvida/armonizatuvida"))
 const InicioTransformacion = lazy(() => import("./pages/InicioTrasformación/InicioTransformacion"))
 const Retos = lazy(() => import("./pages/retos/RetosPage"))
-const Productos = lazy(() => import("./pages/productos/ProductosPage")) // ← AGREGAR
-const Blog = lazy(() => import("./pages/blog/BlogPage")) // ← AGREGAR
+const TransformacionPage = lazy(() => import("./pages/servicios/transformacion/transformacion"))
+const MejorVersion = lazy(() => import('./pages/servicios/mejorversion/MejorVersion'))
+const Productos = lazy(() => import("./pages/productos/ProductosPage"))
+const Blog = lazy(() => import("./pages/blog/BlogPage"))
+const Palancas = lazy(() => import("./pages/servicios/palancas/palancas"))
 
 
 const App = () => {
@@ -31,7 +35,7 @@ const App = () => {
 
         <Navbar menuItems={menuItems} />
 
-        <Suspense fallback={<div className="opacity-0" aria-hidden="true" />}>
+        <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/servicios/coaching" element={<Coaching />} />
@@ -42,6 +46,10 @@ const App = () => {
             <Route path="/retos" element={<Retos />} />
             <Route path="/productos" element={<Productos />} /> 
             <Route path="/blog" element={<Blog />} /> 
+            <Route path="/servicios/transformacion" element={<TransformacionPage />} /> 
+            <Route path="/servicios/mejorversión" element={<MejorVersion />} />
+            <Route path="/servicios/palancas" element={<Palancas />} />
+
 
           </Routes>
         </Suspense>

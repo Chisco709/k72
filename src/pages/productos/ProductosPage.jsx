@@ -1,12 +1,16 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { ShoppingCart, BookOpen, Video, Star, Check, ArrowRight, Sparkles, TrendingUp, Target, Zap } from "lucide-react"
+import { BookOpen, Video, Star, Check, ArrowRight, Sparkles, TrendingUp, Target, Zap } from "lucide-react"
+
+// Components
+import "../../index.css"
 
 export default function ProductosPage() {
   const navigate = useNavigate()
   const [hoveredProduct, setHoveredProduct] = useState(null)
-
-  const products = [
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [products, setProducts] = useState([
     {
       id: 1,
       type: "Curso Virtual",
@@ -70,7 +74,48 @@ export default function ProductosPage() {
       color: "from-blue-600 via-indigo-500 to-blue-500",
       accentColor: "indigo",
     },
-  ]
+  ])
+
+  // Fetch products from backend API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const api = 'http://localhost:4000/api/products'
+
+      try {
+        setLoading(true)
+        setError(null)
+        
+        const response = await fetch(api)
+        if (!response.ok) {
+          throw new Error(`Error al cargar productos: ${response.status}`)
+        }
+        
+        const data = await response.json()
+        const mapped = data.map(p => ({
+          id: p.id,
+          type: p.type || 'Producto',
+          title: p.title,
+          subtitle: p.subtitle || '',
+          description: p.description || '',
+          image: p.image,
+          price: `$${(p.price / 100).toFixed(0)}`,
+          features: p.features || [],
+          icon: BookOpen,
+          color: p.color || 'from-cyan-400 via-blue-500 to-cyan-600',
+          accentColor: p.accentColor || 'blue'
+        }))
+        
+        setProducts(mapped)
+      } catch (err) {
+        console.error('Error:', err)
+        setError('No se pudieron cargar los productos. Por favor, intente más tarde.')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+  }, [])
 
   const journeySteps = [
     {
@@ -104,40 +149,18 @@ export default function ProductosPage() {
           0%, 100% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
         }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        @keyframes float-delayed {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-15px) rotate(5deg); }
-        }
         .animate-gradient {
           background-size: 200% 200%;
           animation: gradient 3s ease infinite;
         }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-          animation: float-delayed 8s ease-in-out infinite;
-        }
-        .animate-fade-in {
-          animation: fadeIn 1s ease-in;
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
       `}</style>
 
       {/* Hero Section */}
-      <section className="relative py-24 md:py-40">
+      <section className="relative pt-32 md:pt-40 pb-24 md:pb-32">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-black to-cyan-950" />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/30 rounded-full blur-[150px] animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/30 rounded-full blur-[120px] animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-indigo-500/20 rounded-full blur-[100px]" />
-
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/30 rounded-full blur-[120px] animate-pulse" />
+        
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/40 rounded-full mb-8 animate-fade-in backdrop-blur-sm">
@@ -239,90 +262,105 @@ export default function ProductosPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {products.map((product, index) => {
-              const Icon = product.icon
-              return (
-                <div
-                  key={product.id}
-                  className="group relative"
-                  onMouseEnter={() => setHoveredProduct(product.id)}
-                  onMouseLeave={() => setHoveredProduct(null)}
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <div className="relative bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden h-full transition-all duration-500 hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-2">
-                    {/* Product Image */}
-                    <div className="relative h-72 overflow-hidden">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-30`} />
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent" />
+          {loading ? (
+            <div className="flex justify-center items-center min-h-[400px]">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+          ) : error ? (
+            <div className="text-center p-8 bg-red-500/10 border border-red-500/20 rounded-lg">
+              <p className="text-red-400">{error}</p>
+              <button 
+                onClick={() => window.location.reload()}
+                className="mt-4 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-lg transition-colors"
+              >
+                Intentar de nuevo
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {products.map((product, index) => {
+                const Icon = product.icon
+                return (
+                  <div
+                    key={product.id}
+                    className="group relative"
+                    onMouseEnter={() => setHoveredProduct(product.id)}
+                    onMouseLeave={() => setHoveredProduct(null)}
+                    style={{ animationDelay: `${index * 150}ms` }}
+                  >
+                    <div className="relative bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden h-full transition-all duration-500 hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-2">
+                      {/* Product Image */}
+                      <div className="relative h-72 overflow-hidden">
+                        <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-30`} />
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent" />
 
-                      {/* Type Badge */}
-                      <div className="absolute top-4 left-4">
-                        <div className="flex items-center gap-2 px-4 py-2 bg-black/90 backdrop-blur-md border border-cyan-400/40 rounded-full">
-                          <Icon className="w-5 h-5 text-cyan-400" />
-                          <span className="text-sm font-bold text-cyan-300">{product.type}</span>
-                        </div>
-                      </div>
-
-                      <div className="absolute top-4 right-4">
-                        <div className={`px-5 py-2.5 bg-gradient-to-r ${product.color} rounded-full shadow-lg`}>
-                          <span className="text-xl font-black text-white">{product.price}</span>
-                        </div>
-                      </div>
-
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-cyan-400 animate-pulse" />
-                      </div>
-                    </div>
-
-                    {/* Product Content */}
-                    <div className="p-8">
-                      <h3 className="text-3xl font-black mb-3 group-hover:text-cyan-400 transition-colors">
-                        {product.title}
-                      </h3>
-                      <p className="text-base text-blue-400 font-semibold mb-4">{product.subtitle}</p>
-                      <p className="text-zinc-400 mb-8 leading-relaxed text-base">{product.description}</p>
-
-                      {/* Features List */}
-                      <div className="space-y-3 mb-8">
-                        {product.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start gap-3 group/item">
-                            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform">
-                              <Check className="w-4 h-4 text-cyan-400" />
-                            </div>
-                            <span className="text-sm text-zinc-300 group-hover/item:text-white transition-colors">
-                              {feature}
-                            </span>
+                        {/* Type Badge */}
+                        <div className="absolute top-4 left-4">
+                          <div className="flex items-center gap-2 px-4 py-2 bg-black/90 backdrop-blur-md border border-cyan-400/40 rounded-full">
+                            <Icon className="w-5 h-5 text-cyan-400" />
+                            <span className="text-sm font-bold text-cyan-300">{product.type}</span>
                           </div>
-                        ))}
+                        </div>
+
+                        <div className="absolute top-4 right-4">
+                          <div className={`px-5 py-2.5 bg-gradient-to-r ${product.color} rounded-full shadow-lg`}>
+                            <span className="text-xl font-black text-white">{product.price}</span>
+                          </div>
+                        </div>
+
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-cyan-400 animate-pulse" />
+                        </div>
                       </div>
 
-                      <button
-                        onClick={() => window.open('https://wa.me/573117472236', '_blank')}
-                        className={`w-full bg-gradient-to-r ${product.color} hover:shadow-2xl hover:shadow-blue-500/50 text-white font-bold text-lg py-6 transition-all duration-300 hover:scale-105 rounded-lg inline-flex items-center justify-center gap-2`}
-                      >
-                        <ShoppingCart className="w-6 h-6" />
-                        Adquirir Ahora
-                      </button>
+                      {/* Product Content */}
+                      <div className="p-8">
+                        <h3 className="text-3xl font-black mb-3 group-hover:text-cyan-400 transition-colors">
+                          {product.title}
+                        </h3>
+                        <p className="text-base text-blue-400 font-semibold mb-4">{product.subtitle}</p>
+                        <p className="text-zinc-400 mb-8 leading-relaxed text-base">{product.description}</p>
+
+                        {/* Features List */}
+                        <div className="space-y-3 mb-8">
+                          {product.features.map((feature, idx) => (
+                            <div key={idx} className="flex items-start gap-3 group/item">
+                              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform">
+                                <Check className="w-4 h-4 text-cyan-400" />
+                              </div>
+                              <span className="text-sm text-zinc-300 group-hover/item:text-white transition-colors">
+                                {feature}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+
+                        <button
+                          onClick={() => navigate(`/productos/${product.id}`)}
+                          className={`w-full bg-gradient-to-r ${product.color} hover:shadow-2xl hover:shadow-blue-500/50 text-white font-bold text-lg py-6 transition-all duration-300 hover:scale-105 rounded-lg inline-flex items-center justify-center gap-2`}
+                        >
+                          Ver Detalles
+                        </button>
+                      </div>
+
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`}
+                      />
                     </div>
 
                     <div
-                      className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`}
+                      className={`absolute -inset-2 bg-gradient-to-br ${product.color} rounded-3xl opacity-0 group-hover:opacity-30 blur-2xl transition-opacity duration-500 -z-10`}
                     />
                   </div>
-
-                  <div
-                    className={`absolute -inset-2 bg-gradient-to-br ${product.color} rounded-3xl opacity-0 group-hover:opacity-30 blur-2xl transition-opacity duration-500 -z-10`}
-                  />
-                </div>
-              )
-            })}
-          </div>
+                )
+              })}
+            </div>
+          )}
         </div>
       </section>
 
