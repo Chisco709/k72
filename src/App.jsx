@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
 import Navbar from './navigation/Navbar/Navbar'
 import PromotionalBanner from './components/common/Banner'
+import WhatsAppButton from './components/common/WhatsAppButton'
 import { menuItems, bannerConfig } from './pages/constants/menuConfig'
 import LoadingSpinner from './components/ui/LoadingSpinner'
 
@@ -69,6 +70,8 @@ const App = () => {
 
           </Routes>
         </Suspense>
+
+        <WhatsAppButton />
       </div>
     </CartProvider>
   )

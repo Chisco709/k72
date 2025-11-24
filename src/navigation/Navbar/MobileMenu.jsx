@@ -17,11 +17,6 @@ const MobileMenu = ({ isOpen, onClose, menuItems }) => (
             </a>
           </div>
         ))}
-        <hr className="border-gray-700" />
-        <a href="/login" className="block py-2 hover:text-gray-300">Acceso</a>
-        <button className="w-full bg-white text-black py-2 rounded-full font-medium mt-2">
-          Inicia Ahora
-        </button>
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ import AboutSection from "../Hunger/HungerSection";
 import CoachingPage from "../../components/section/section";
 import ImagenFinal from "../../components/imagen-final/imagen-final"
 import TestimonialsSection from "../../pages/testimonial/testimonial-section"
+import DiagnosticoSection from "../../components/Diagnostico/DiagnosticoSection"
 import Footer from "../../pages/footer/footer"
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
       <AboutSection/>
       <CoachingPage/>
       <TestimonialsSection/>
+      <DiagnosticoSection/>
       <Footer/>
     </div>
   );
