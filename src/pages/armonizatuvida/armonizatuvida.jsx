@@ -55,7 +55,7 @@ export default function ArmonizaTuVidaPage() {
                   className="group h-14 bg-white px-8 text-base text-[#000000] hover:bg-white/90"
                   asChild
                 >
-                  <Link href="/carrito">
+                  <Link to="/carrito">
                     Comenzar ahora
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
@@ -461,7 +461,7 @@ export default function ArmonizaTuVidaPage() {
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" className="group h-14 bg-white px-8 text-base text-[#000000] hover:bg-white/90" asChild>
-                <Link href="/carrito">
+                <Link to="/carrito">
                   Agendar sesión
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
@@ -472,7 +472,7 @@ export default function ArmonizaTuVidaPage() {
                 className="h-14 border-white/20 bg-transparent px-8 text-base text-white hover:bg-white/5"
                 asChild
               >
-                <Link href="/servicios/coaching">Ver otros servicios</Link>
+                <Link to="/servicios/coaching">Ver otros servicios</Link>
               </Button>
             </div>
           </div>

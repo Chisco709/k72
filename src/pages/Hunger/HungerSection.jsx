@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const AboutSection = () => {
@@ -42,12 +43,12 @@ const AboutSection = () => {
             y en construir un futuro sólido con base en la mentalidad,  
             la salud y el liderazgo.
           </p>
-          <a
-            href="/inicio-transformacion"
+          <Link
+            to="/inicio-transformacion"
             className="inline-block px-8 py-4 border border-white rounded-full font-semibold uppercase tracking-wide hover:bg-white hover:text-black transition duration-300"
           >
             Descubre más
-          </a>
+          </Link>
         </motion.div>
 
         {/* Imagen destacada - derecha con animación */}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const PillarsSection = () => {
@@ -75,12 +76,12 @@ const PillarsSection = () => {
                     ))}
                   </div>
 
-                  <a
-                    href="/servicios"
+                  <Link
+                    to="/servicios"
                     className="ml-2 text-sm font-semibold text-blue-600"
                   >
                     Ver todos
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -7,11 +7,11 @@ export default function BlogPage() {
     title: "Los Circuitos del Éxito Organizacional",
     collection: "Colección Las Paradojas",
     excerpt:
-      "Es muy probable que todos en el colegio en una clase de Física o en alguna experiencia de la vida, hayamos tenido frente a nuestros ojos una tabla o placa de circuitos eléctricos...",
+      "Es muy probable que todos en el colegio en una clase de Física o en alguna experiencia de la vida, hayamos tenido frente a nuestros ojos una tabla o placa de circuitos eléctricos. Estos circuitos nos enseñan que la energía fluye a través de conexiones bien diseñadas, y lo mismo ocurre en las organizaciones exitosas.",
     likes: 0,
     readTime: "8 min",
     category: "Paradojas",
-    image: "/electrical-circuits-success-organizational.jpg",
+    image: "/person-working-on-laptop-in-bright-modern-office-w.jpg",
   }
 
   const posts = [
@@ -19,41 +19,41 @@ export default function BlogPage() {
       title: "El Poder de las Cosas Elementales",
       collection: "Colección Las Paradojas",
       excerpt:
-        "Es paradójico que aquellas cosas que están frente a nuestros ojos no las veamos. La mayoría de las personas buscan fórmulas mágicas para resolver los aspectos básicos de sus vidas...",
+        "Es paradójico que aquellas cosas que están frente a nuestros ojos no las veamos. La mayoría de las personas buscan fórmulas mágicas para resolver los aspectos básicos de sus vidas, cuando la verdadera transformación comienza con lo simple y esencial.",
       likes: 1,
       readTime: "6 min",
       category: "Paradojas",
-      image: "/simple-things-mindfulness-awareness.jpg",
+      image: "/transformacion.jpg",
     },
     {
       title: "La Misión de Ser Feliz",
       collection: "Colección Las Paradojas",
       excerpt:
-        "Es una verdadera paradoja que hayamos encarnado en la vida como resultado del amor o de una misteriosa suerte de situaciones que arrojaron un dado con el código de nuestro ADN...",
+        "Es una verdadera paradoja que hayamos encarnado en la vida como resultado del amor o de una misteriosa suerte de situaciones que arrojaron un dado con el código de nuestro ADN. Sin embargo, muchos olvidan que la felicidad no es un destino, sino un camino que se construye día a día.",
       likes: 0,
       readTime: "7 min",
       category: "Paradojas",
-      image: "/happiness-mission-purpose-life.jpg",
+      image: "/reneimage.jpg",
     },
     {
       title: "El Destino de las Águilas",
       collection: "Fábulas",
       excerpt:
-        "Desde que era muy chico papá águila recibió instrucciones muy precisas de su padre acerca de cómo volar con perfección, y además con mucha insistencia, sobre la importancia de enseñar a otros a volar...",
+        "Desde que era muy chico papá águila recibió instrucciones muy precisas de su padre acerca de cómo volar con perfección, y además con mucha insistencia, sobre la importancia de enseñar a otros a volar. Esta fábula nos recuerda que el verdadero liderazgo se construye cuando compartimos nuestro conocimiento.",
       likes: 1,
       readTime: "5 min",
       category: "Fábulas",
-      image: "/eagle-flying-teaching-mentorship.jpg",
+      image: "/Aguila1.jpg",
     },
     {
       title: "Águila Hembra",
       collection: "Fábulas",
       excerpt:
-        "Una noche mientras Katy se encontraba a punto de irse a dormir, se le ocurrió ir al cuarto de su padre para preguntarle algo que le atormentaba profundamente a sus cinco años...",
+        "Una noche mientras Katy se encontraba a punto de irse a dormir, se le ocurrió ir al cuarto de su padre para preguntarle algo que le atormentaba profundamente a sus cinco años. Esta historia nos enseña sobre la importancia de hacer preguntas y buscar respuestas que transformen nuestra perspectiva.",
       likes: 0,
       readTime: "4 min",
       category: "Fábulas",
-      image: "/female-eagle-empowerment-equality.jpg",
+      image: "/Aguila1.jpg",
     },
   ]
 

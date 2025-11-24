@@ -1,12 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const EventsSection = () => {
+  const navigate = useNavigate()
   const [currentSlide, setCurrentSlide] = useState(0)
   const scrollRef = useRef(null)
 
-  const navigate = (href) => {
-    window.location.href = href
+  const handleNavigate = (href) => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    navigate(href)
   }
 
   const events = [
@@ -60,7 +63,7 @@ const EventsSection = () => {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12 sm:mb-16 gap-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-8 space-y-3 sm:space-y-0">
             <h2 className="text-3xl sm:text-5xl font-bold">Programas que liberan</h2>
-            <div onClick={() => navigate("/servicios")} className="flex items-center text-gray-400 hover:text-white transition-colors cursor-pointer group">
+            <div onClick={() => handleNavigate("/servicios")} className="flex items-center text-gray-400 hover:text-white transition-colors cursor-pointer group">
               <span className="text-base font-medium">Descubre nuestros programas</span>
               <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </div>
@@ -81,7 +84,7 @@ const EventsSection = () => {
         <div className="relative overflow-hidden">
           <div className="hidden sm:flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${currentSlide * (100 / visibleCards)}%)` }}>
             {events.map((event) => (
-              <div key={event.id} className="w-[25%] flex-shrink-0 px-3 cursor-pointer" onClick={() => navigate(event.href)}>
+              <div key={event.id} className="w-[25%] flex-shrink-0 px-3 cursor-pointer" onClick={() => handleNavigate(event.href)}>
                 <div className="relative h-[460px] rounded-2xl overflow-hidden group">
                   <img src={event.image} alt={event.title} className="absolute inset-0 w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-black/70" />
@@ -101,7 +104,7 @@ const EventsSection = () => {
           <div className="sm:hidden relative">
             <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 px-4" ref={scrollRef} style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
               {events.map((event, idx) => (
-                <div key={event.id} className="flex-none min-w-[82%] snap-center first:ml-0 last:mr-2" onClick={() => navigate(event.href)}>
+                <div key={event.id} className="flex-none min-w-[82%] snap-center first:ml-0 last:mr-2" onClick={() => handleNavigate(event.href)}>
                   <div className="relative h-[440px] rounded-3xl overflow-hidden shadow-2xl active:scale-[0.98] transition-transform duration-200">
                     <img src={event.image} alt={event.title} className="absolute inset-0 w-full h-full object-cover" />
                     {/* Gradiente mejorado para mobile */}

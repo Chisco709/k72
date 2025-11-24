@@ -1,10 +1,21 @@
-import { useState, lazy, Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { useState, lazy, Suspense, useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
 import Navbar from './navigation/Navbar/Navbar'
 import PromotionalBanner from './components/common/Banner'
 import { menuItems, bannerConfig } from './pages/constants/menuConfig'
 import LoadingSpinner from './components/ui/LoadingSpinner'
+
+// Component to scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation()
+  
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname])
+  
+  return null
+}
 
 const Home = lazy(() => import('./pages/Home/Home'))
 const Coaching = lazy(() => import('./pages/servicios/coaching/CoachingPage'))
@@ -28,6 +39,7 @@ const App = () => {
   return (
     <CartProvider>
       <div className="overflow-x-hidden">
+        <ScrollToTop />
         {showBanner && (
           <PromotionalBanner
             message={bannerConfig.message}

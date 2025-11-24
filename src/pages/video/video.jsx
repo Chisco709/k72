@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const HeroVideo = () => {
@@ -32,21 +33,13 @@ const HeroVideo = () => {
             área de tu vida
           </h2>
 
-          <div className="pt-2">
-            <p className="text-base md:text-lg opacity-90 leading-snug">
-              Close the gap between where you are and where you want to be with
-            </p>
-            <p className="text-base md:text-lg opacity-90 leading-snug -mt-1">
-              Tony Robbins' scientifically proven system.
-            </p>
-          </div>
 
           <div className="pt-4">
-            <a href="/inicio-transformacion" className="inline-block">
+            <Link to="/inicio-transformacion" className="inline-block">
               <span className="cursor-pointer group inline-flex items-center justify-center gap-2 font-medium text-center tracking-wide rounded-full duration-500 border border-white bg-white hover:bg-gray-100 text-black w-auto text-sm md:text-base py-3 md:py-4 px-6 md:px-8">
                 <span>Inicia ahora</span>
               </span>
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

@@ -21,7 +21,7 @@ export default function ProductosPage() {
     })
   )
 
-  // Fetch products from backend API
+  // Fetch products from backend API (fallback to local data if API fails)
   useEffect(() => {
     const fetchProducts = async () => {
       const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:4000'
@@ -31,30 +31,46 @@ export default function ProductosPage() {
         setLoading(true)
         setError(null)
         
-        const response = await fetch(api)
+        // Create timeout controller
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 5000)
+        
+        const response = await fetch(api, { 
+          signal: controller.signal
+        })
+        
+        clearTimeout(timeoutId)
+        
         if (!response.ok) {
           throw new Error(`Error al cargar productos: ${response.status}`)
         }
         
         const data = await response.json()
-        const mapped = data.map(p => normalizeProduct({
-          id: p.slug || String(p.id),
-          type: p.type || 'Producto',
-          title: p.title,
-          subtitle: p.subtitle || '',
-          description: p.description || '',
-          image: p.image || '/coach.jpg',
-          price: typeof p.price === 'number' ? `$${(p.price / 100).toFixed(0)}` : p.price || '',
-          features: p.features || [],
-          icon: p.icon || 'book',
-          color: p.color || 'from-cyan-400 via-blue-500 to-cyan-600',
-          accentColor: p.accentColor || 'blue'
-        }))
-        
-        setProducts(mapped)
+        if (Array.isArray(data) && data.length > 0) {
+          const mapped = data.map(p => normalizeProduct({
+            id: p.slug || String(p.id),
+            type: p.type || 'Producto',
+            title: p.title,
+            subtitle: p.subtitle || '',
+            description: p.description || '',
+            image: p.image || '/coach.jpg',
+            price: typeof p.price === 'number' ? `$${(p.price / 100).toFixed(0)}` : p.price || '',
+            features: p.features || [],
+            icon: p.icon || 'book',
+            color: p.color || 'from-cyan-400 via-blue-500 to-cyan-600',
+            accentColor: p.accentColor || 'blue'
+          }))
+          setProducts(mapped)
+        } else {
+          // If API returns empty, keep fallback products
+          console.log('API returned empty, using fallback products')
+        }
       } catch (err) {
-        console.error('Error:', err)
-        setError('No se pudieron cargar los productos. Por favor, intente más tarde.')
+        // Silently fallback to local products - don't show error
+        if (err.name !== 'AbortError') {
+          console.log('Using fallback products:', err.message)
+        }
+        // Products are already set from initial state (FALLBACK_PRODUCTS)
       } finally {
         setLoading(false)
       }
@@ -212,15 +228,9 @@ export default function ProductosPage() {
             <div className="flex justify-center items-center min-h-[400px]">
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
             </div>
-          ) : error ? (
-            <div className="text-center p-8 bg-red-500/10 border border-red-500/20 rounded-lg">
-              <p className="text-red-400">{error}</p>
-              <button 
-                onClick={() => window.location.reload()}
-                className="mt-4 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-lg transition-colors"
-              >
-                Intentar de nuevo
-              </button>
+          ) : products.length === 0 ? (
+            <div className="text-center p-8 bg-zinc-900/50 border border-zinc-800 rounded-lg">
+              <p className="text-zinc-400">No hay productos disponibles en este momento.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

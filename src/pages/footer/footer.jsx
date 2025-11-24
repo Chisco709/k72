@@ -49,17 +49,42 @@ export default function Footer() {
             <div className="space-y-5">
               <h4 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Servicios</h4>
               <ul className="space-y-3">
-                {["Coaching", "Oratoria", "Talleres", "Retos", "Programas"].map((item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="group flex items-center gap-2 text-lg text-zinc-300 transition-colors hover:text-white"
-                    >
-                      <span>{item}</span>
-                      <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
-                    </a>
-                  </li>
-                ))}
+                <li>
+                  <a
+                    href="/servicios/coaching"
+                    className="group flex items-center gap-2 text-lg text-zinc-300 transition-colors hover:text-white"
+                  >
+                    <span>Coaching</span>
+                    <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/servicios/conferencias"
+                    className="group flex items-center gap-2 text-lg text-zinc-300 transition-colors hover:text-white"
+                  >
+                    <span>Conferencias y Talleres</span>
+                    <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/retos"
+                    className="group flex items-center gap-2 text-lg text-zinc-300 transition-colors hover:text-white"
+                  >
+                    <span>Retos</span>
+                    <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/servicios"
+                    className="group flex items-center gap-2 text-lg text-zinc-300 transition-colors hover:text-white"
+                  >
+                    <span>Ver todos los servicios</span>
+                    <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -67,17 +92,42 @@ export default function Footer() {
             <div className="space-y-5">
               <h4 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Explorar</h4>
               <ul className="space-y-3">
-                {["Productos", "Blog", "Carrito", "Retos"].map((item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="group flex items-center gap-2 text-lg text-zinc-300 transition-colors hover:text-white"
-                    >
-                      <span>{item}</span>
-                      <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
-                    </a>
-                  </li>
-                ))}
+                <li>
+                  <a
+                    href="/productos"
+                    className="group flex items-center gap-2 text-lg text-zinc-300 transition-colors hover:text-white"
+                  >
+                    <span>Productos</span>
+                    <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/blog"
+                    className="group flex items-center gap-2 text-lg text-zinc-300 transition-colors hover:text-white"
+                  >
+                    <span>Blog</span>
+                    <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/carrito"
+                    className="group flex items-center gap-2 text-lg text-zinc-300 transition-colors hover:text-white"
+                  >
+                    <span>Carrito</span>
+                    <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/retos"
+                    className="group flex items-center gap-2 text-lg text-zinc-300 transition-colors hover:text-white"
+                  >
+                    <span>Retos</span>
+                    <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -87,11 +137,11 @@ export default function Footer() {
               <ul className="space-y-4">
                 <li>
                   <a
-                    href="mailto:contacto@renechisco.com"
+                    href="mailto:rfernandochisco@gmail.com"
                     className="group flex items-start gap-3 text-base text-zinc-300 transition-colors hover:text-white"
                   >
                     <Mail className="mt-1 h-5 w-5 flex-shrink-0" />
-                    <span className="break-all">contacto@renechisco.com</span>
+                    <span className="break-all">rfernandochisco@gmail.com</span>
                   </a>
                 </li>
                 <li>
