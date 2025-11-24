@@ -1,4 +1,4 @@
-import { Mail, Phone, Facebook, Instagram, Linkedin, ArrowUpRight } from "lucide-react"
+import { Mail, Phone, Facebook, Instagram, Youtube, ArrowUpRight } from "lucide-react"
 
 export default function Footer() {
   return (
@@ -112,13 +112,15 @@ export default function Footer() {
         <div className="mt-20 flex flex-col gap-8 border-t border-white/10 pt-10 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex gap-3">
             {[
-              { icon: Facebook, label: "Facebook", url: "#" },
-              { icon: Instagram, label: "Instagram", url: "#" },
-              { icon: Linkedin, label: "LinkedIn", url: "#" },
+              { icon: Facebook, label: "Facebook", url: "https://www.bing.com/ck/a?!&&p=7a18e3ef2916aa903c9e582ba92e1c6def849bcf69c299fc277a683472e480edJmltdHM9MTc2Mzk0MjQwMA&ptn=3&ver=2&hsh=4&fclid=15ee6d28-4624-6d02-0771-78c5478b6cd7&psq=renechisco+facebook&u=a1aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL0NvYWNoLVJlbmUtQ2hpc2NvLTEwMjg2ODY3MTY4MzQ4Ni8" },
+              { icon: Instagram, label: "Instagram", url: "https://www.instagram.com/coachrenechisco/" },
+              { icon: Youtube, label: "YouTube", url: "https://www.youtube.com/renechisco" },
             ].map(({ icon: Icon, label, url }) => (
               <a
                 key={label}
                 href={url}
+                target="_blank"
+                rel="noreferrer"
                 className="group relative flex h-14 w-14 items-center justify-center rounded-full border border-white/20 transition-all hover:border-white hover:bg-white"
                 aria-label={label}
               >

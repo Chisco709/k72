@@ -1,0 +1,66 @@
+export const FALLBACK_PRODUCTS = [
+  {
+    id: "del-cambio-a-la-transformacion",
+    type: "Curso Virtual",
+    title: "Del Cambio a la Transformación Personal",
+    subtitle: "Coaching de Vida con René Chisco",
+    description:
+      "Un emocionante programa de coaching de vida que te guiará a través de un viaje reflexivo y empoderador para alcanzar tu máximo potencial y lograr una transformación personal significativa.",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-zIMy5TR9toRFdmNXjUQCy1wg4uPzF7.png",
+    price: "$197",
+    features: [
+      "Autoexploración profunda",
+      "Gestión efectiva del cambio",
+      "Establecimiento de objetivos claros",
+      "Construcción de mentalidad positiva",
+      "Herramientas y estrategias prácticas",
+      "Acceso de por vida",
+    ],
+    icon: "video",
+    color: "from-blue-500 via-cyan-400 to-blue-600",
+    accentColor: "blue",
+  },
+  {
+    id: "rompe-el-libreto",
+    type: "Libro Digital",
+    title: "Rompe el Libreto",
+    subtitle: "Conquista Tu Mejor Versión",
+    description:
+      "Un proceso sistematizado de estrategias y técnicas compartidas con éxito durante los últimos diez años. Una guía soportada en los aportes de la Física Cuántica, Neurociencias, Psicología, PNL y Coaching.",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-zIMy5TR9toRFdmNXjUQCy1wg4uPzF7.png",
+    price: "$47",
+    features: [
+      "Manual para vivir tus mejores días",
+      "Estrategias probadas por 10 años",
+      "Basado en investigación científica",
+      "Técnicas de PNL y Coaching",
+      "Desafío a la zona de confort",
+      "Formato digital descargable",
+    ],
+    icon: "book",
+    color: "from-cyan-400 via-blue-500 to-cyan-600",
+    accentColor: "cyan",
+  },
+  {
+    id: "el-muro",
+    type: "Libro Digital",
+    title: "El Muro",
+    subtitle: "17 Pasos Para Alcanzar La Vida De Tus Sueños",
+    description:
+      "Descubre qué significa estar detrás del muro y cómo cruzarlo. Una guía transformadora que te llevará de la supervivencia a vivir con propósito, pasión y maestría en cada área de tu vida.",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-fjuUPpmQi9XhjJ0bN1xAYLSn5TCYXm.png",
+    price: "$47",
+    features: [
+      "17 pasos prácticos y accionables",
+      "De la supervivencia al propósito",
+      "Encuentra tu pasión y maestría",
+      "Construye una vida íntegra",
+      "Filosofía de vida basada en principios",
+      "Formato digital descargable",
+    ],
+    icon: "book",
+    color: "from-blue-600 via-indigo-500 to-blue-500",
+    accentColor: "indigo",
+  },
+]
+

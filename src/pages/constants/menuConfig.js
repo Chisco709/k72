@@ -3,12 +3,12 @@ export const menuItems = [
   {
     title: "Servicios",
     items: [
+      { label: "Ver todos los servicios", href: "/servicios" },
       { label: "Coaching", href: "/servicios/coaching" },
       { label: "Conferencias y Talleres", href: "/servicios/conferencias" },
       { label: "Armoniza tu vida", href: "/servicios/armonizatuvida" },
-      { label: "Del cambio a la transformación", href: "/servicios/transformación" },
+      { label: "Del cambio a la transformación", href: "/servicios/transformacion" },
       { label: "Descubre tu mejor versión", href: "/servicios/mejorversión" },
-      { label: "Armoniza tu vida", href: "/servicios/armonizatuvida" },
       { label: "Las palancas del poder personal", href: "/servicios/palancas" }
 
 

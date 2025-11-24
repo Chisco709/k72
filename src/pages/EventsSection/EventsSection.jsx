@@ -11,12 +11,12 @@ const EventsSection = () => {
 
   const events = [
     { id: 1, title: "COACHING", subtitle: "RENE CHISCO", description: "Esto es texto un borrador", image: "/coach.jpg", href: "/servicios/coaching" },
-    { id: 2, title: "TALLERES", subtitle: "RENE CHISCO", description: "Este texto es un borrador", image: "/conferencias.jpg", href: "/servicios/talleres" },
-    { id: 3, title: "ARMONIZA TU VIDA", subtitle: "RENE CHISCO", description: "Una Pedagogía para prevenir y enfrentar el estrés", image: "/armoniza.jpg", href: "/productos/armoniza-tu-vida" },
+    { id: 2, title: "TALLERES", subtitle: "RENE CHISCO", description: "Este texto es un borrador", image: "/conferencias.jpg", href: "/servicios/conferencias" },
+    { id: 3, title: "ARMONIZA TU VIDA", subtitle: "RENE CHISCO", description: "Una Pedagogía para prevenir y enfrentar el estrés", image: "/armoniza.jpg", href: "/servicios/armonizatuvida" },
     { id: 4, title: "DEL CAMBIO A LA TRANSFORMACIÓN", subtitle: "RENE CHISCO", description: "Despierta tu mejor versión", image: "/transformacion.jpg", href: "/inicio-transformacion" },
-    { id: 5, title: "DESCUBRE TU MEJOR VERSIÓN", subtitle: "RENE CHISCO", description: "Master mind and body", image: "/Aguila1.jpg", href: "/productos/descubre-tu-mejor-version" },
-    { id: 6, title: "LAS PALANCAS DEL PODER PERSONAL", subtitle: "RENE CHISCO", description: "Descubre cómo activar tu fuerza interior", image: "/palancas-poder.jpg", href: "/retos/palancas-del-poder" },
-    { id: 7, title: "VENCE TU TIMIDEZ", subtitle: "RENE CHISCO", description: "Aprende a expresarte con seguridad", image: "/timidez.jpg", href: "/retos/vence-tu-timidez" }
+    { id: 5, title: "DESCUBRE TU MEJOR VERSIÓN", subtitle: "RENE CHISCO", description: "Master mind and body", image: "/Aguila1.jpg", href: "/servicios/mejorversión" },
+    { id: 6, title: "LAS PALANCAS DEL PODER PERSONAL", subtitle: "RENE CHISCO", description: "Descubre cómo activar tu fuerza interior", image: "/palancas-poder.jpg", href: "/servicios/palancas" },
+    { id: 7, title: "VENCE TU TIMIDEZ", subtitle: "RENE CHISCO", description: "Aprende a expresarte con seguridad", image: "/timidez.jpg", href: "/retos" }
   ]
 
   const visibleCards = 4

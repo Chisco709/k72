@@ -11,7 +11,7 @@ const PRODUCTS = {
     subtitle: "Viaje al significado",
     price: 450000,
     duration: "5–10 semanas",
-    image: "/reneimage.jpg"
+    image: "/coach.jpg"
   },
   deportivo: {
     id: "deportivo",
@@ -19,7 +19,7 @@ const PRODUCTS = {
     subtitle: "Enfócate en el rendimiento",
     price: 600000,
     duration: "Personalizado",
-    image: "/deportivo.jpg"
+    image: "/professional-man-in-black-shirt-speaking.jpg"
   },
   guerrero: {
     id: "guerrero",
@@ -27,7 +27,7 @@ const PRODUCTS = {
     subtitle: "Alquimia del carácter",
     price: 1200000,
     duration: "1 fin de semana",
-    image: "/guerrero.jpg"
+    image: "/palancas-poder.jpg"
   },
   excelencia: {
     id: "excelencia",
@@ -35,7 +35,7 @@ const PRODUCTS = {
     subtitle: "Habilidades que perduran",
     price: 350000,
     duration: "8 horas | workshop",
-    image: "/excelencia.jpg"
+    image: "/nueva.jpeg"
   },
   busqueda: {
     id: "busqueda",
@@ -43,7 +43,7 @@ const PRODUCTS = {
     subtitle: "Explora & transforma",
     price: 680000,
     duration: "2 talleres",
-    image: "/busqueda.jpg"
+    image: "/transformacion.jpg"
   }
 }
 
@@ -67,13 +67,17 @@ export default function CarritoPage() {
     mensaje: ''
   })
 
-  // CORRECCIÓN: Usar useEffect en lugar de useState
+  const programaId = searchParams.get('programa')
+
   useEffect(() => {
-    const programaId = searchParams.get('programa')
-    if (programaId && PRODUCTS[programaId]) {
-      addToCart(PRODUCTS[programaId])
+    if (!programaId) return
+    const productoSeleccionado = PRODUCTS[programaId]
+    if (!productoSeleccionado) {
+      console.warn(`Programa no encontrado: ${programaId}`)
+      return
     }
-  }, [searchParams, addToCart])
+    addToCart(productoSeleccionado)
+  }, [programaId, addToCart])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -119,22 +123,55 @@ export default function CarritoPage() {
       })
   }
 
-  if (cart.length === 0 && !searchParams.get('programa')) {
+  if (cart.length === 0 && !programaId) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center px-4 pt-32">
-        <div className="text-center max-w-md">
+      <div className="min-h-screen bg-black text-white px-4 pt-32 pb-20">
+        <div className="max-w-5xl mx-auto text-center">
           <ShoppingBag className="w-24 h-24 mx-auto text-gray-600 mb-6" />
-          <h2 className="text-3xl font-bold mb-4">Tu carrito está vacío</h2>
+          <h2 className="text-4xl font-bold mb-4">Tu carrito está vacío</h2>
           <p className="text-gray-400 mb-8">
             Agrega algunos programas para comenzar tu transformación
           </p>
-          <button
-            onClick={() => navigate('/servicios/coaching')}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-flex items-center gap-2"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Ver Programas
-          </button>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <button
+              onClick={() => navigate('/servicios')}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-flex items-center gap-2"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Ver Servicios
+            </button>
+            <button
+              onClick={() => navigate('/servicios/coaching')}
+              className="border border-gray-700 hover:border-gray-500 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-flex items-center gap-2"
+            >
+              Explorar Coaching
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-16 max-w-6xl mx-auto">
+          <h3 className="text-2xl font-semibold mb-6 text-center">Programas disponibles</h3>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {Object.values(PRODUCTS).map((programa) => (
+              <div key={programa.id} className="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden flex flex-col">
+                <img src={programa.image} alt={programa.title} className="h-40 w-full object-cover" />
+                <div className="p-6 flex flex-col gap-4 flex-1">
+                  <div>
+                    <p className="text-sm text-blue-400 uppercase tracking-[0.2em] mb-1">{programa.duration}</p>
+                    <h4 className="text-xl font-semibold">{programa.title}</h4>
+                    <p className="text-sm text-gray-400">{programa.subtitle}</p>
+                  </div>
+                  <p className="text-2xl font-bold text-blue-400">{formatCOP(programa.price)}</p>
+                  <button
+                    onClick={() => addToCart(programa)}
+                    className="mt-auto bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors"
+                  >
+                    Añadir al carrito
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     )

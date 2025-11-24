@@ -48,33 +48,20 @@ const testimonials = [
 
 const TestimonialCard = ({ testimonial }) => (
   <div className="w-[calc(33.33%-16px)] flex-shrink-0">
-    <div className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-zinc-950/50">
-      <div className="relative h-64 overflow-hidden">
-        <img
-          src={testimonial.image}
-          alt={testimonial.name}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/95 via-zinc-900/40 to-transparent" />
-
-        <div className="absolute left-6 top-6 rounded-full bg-zinc-800/90 p-3 shadow-lg backdrop-blur-sm">
-          <Quote className="h-5 w-5 text-white" />
+    <div className="h-full rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6 flex flex-col gap-6 transition-all duration-500 hover:border-blue-500/40">
+      <div className="flex gap-3 items-center">
+        <div className="rounded-full bg-blue-600/20 p-3">
+          <Quote className="h-5 w-5 text-blue-200" />
+        </div>
+        <div>
+          <p className="font-semibold text-white">{testimonial.name}</p>
+          <p className="text-sm text-zinc-400">{testimonial.role}</p>
         </div>
       </div>
 
-      <div className="p-6">
-        <p className="mb-6 text-base leading-relaxed text-zinc-300">
-          "{testimonial.quote}"
-        </p>
-
-        <div className="flex items-center gap-4 border-t border-zinc-800 pt-4">
-          <div className="h-10 w-10 rounded-full bg-zinc-800" />
-          <div>
-            <p className="font-semibold text-white">{testimonial.name}</p>
-            <p className="text-sm text-zinc-400">{testimonial.role}</p>
-          </div>
-        </div>
-      </div>
+      <p className="text-base leading-relaxed text-zinc-300 flex-1">
+        "{testimonial.quote}"
+      </p>
     </div>
   </div>
 )

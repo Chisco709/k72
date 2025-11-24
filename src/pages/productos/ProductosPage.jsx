@@ -1,85 +1,31 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { BookOpen, Video, Star, Check, ArrowRight, Sparkles, TrendingUp, Target, Zap } from "lucide-react"
+import { Star, Check, ArrowRight, Sparkles, TrendingUp, Target, Zap } from "lucide-react"
 
 // Components
 import "../../index.css"
+import { FALLBACK_PRODUCTS } from "./data"
+import { normalizeProduct } from "./utils"
 
 export default function ProductosPage() {
   const navigate = useNavigate()
-  const [hoveredProduct, setHoveredProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      type: "Curso Virtual",
-      title: "Del Cambio a la Transformación Personal",
-      subtitle: "Coaching de Vida con René Chisco",
-      description:
-        "Un emocionante programa de coaching de vida que te guiará a través de un viaje reflexivo y empoderador para alcanzar tu máximo potencial y lograr una transformación personal significativa.",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-zIMy5TR9toRFdmNXjUQCy1wg4uPzF7.png",
-      price: "$197",
-      features: [
-        "Autoexploración profunda",
-        "Gestión efectiva del cambio",
-        "Establecimiento de objetivos claros",
-        "Construcción de mentalidad positiva",
-        "Herramientas y estrategias prácticas",
-        "Acceso de por vida",
-      ],
-      icon: Video,
-      color: "from-blue-500 via-cyan-400 to-blue-600",
-      accentColor: "blue",
-    },
-    {
-      id: 2,
-      type: "Libro Digital",
-      title: "Rompe el Libreto",
-      subtitle: "Conquista Tu Mejor Versión",
-      description:
-        "Un proceso sistematizado de estrategias y técnicas compartidas con éxito durante los últimos diez años. Una guía soportada en los aportes de la Física Cuántica, Neurociencias, Psicología, PNL y Coaching.",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-zIMy5TR9toRFdmNXjUQCy1wg4uPzF7.png",
-      price: "$47",
-      features: [
-        "Manual para vivir tus mejores días",
-        "Estrategias probadas por 10 años",
-        "Basado en investigación científica",
-        "Técnicas de PNL y Coaching",
-        "Desafío a la zona de confort",
-        "Formato digital descargable",
-      ],
-      icon: BookOpen,
-      color: "from-cyan-400 via-blue-500 to-cyan-600",
-      accentColor: "cyan",
-    },
-    {
-      id: 3,
-      type: "Libro Digital",
-      title: "El Muro",
-      subtitle: "17 Pasos Para Alcanzar La Vida De Tus Sueños",
-      description:
-        "Descubre qué significa estar detrás del muro y cómo cruzarlo. Una guía transformadora que te llevará de la supervivencia a vivir con propósito, pasión y maestría en cada área de tu vida.",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-fjuUPpmQi9XhjJ0bN1xAYLSn5TCYXm.png",
-      price: "$47",
-      features: [
-        "17 pasos prácticos y accionables",
-        "De la supervivencia al propósito",
-        "Encuentra tu pasión y maestría",
-        "Construye una vida íntegra",
-        "Filosofía de vida basada en principios",
-        "Formato digital descargable",
-      ],
-      icon: BookOpen,
-      color: "from-blue-600 via-indigo-500 to-blue-500",
-      accentColor: "indigo",
-    },
-  ])
+  const [products, setProducts] = useState(() =>
+    FALLBACK_PRODUCTS.map((product) => {
+      const baseProduct = {
+        ...product,
+        icon: product.icon || 'book'
+      }
+      return normalizeProduct(baseProduct)
+    })
+  )
 
   // Fetch products from backend API
   useEffect(() => {
     const fetchProducts = async () => {
-      const api = 'http://localhost:4000/api/products'
+      const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+      const api = `${apiBase}/api/products`
 
       try {
         setLoading(true)
@@ -91,16 +37,16 @@ export default function ProductosPage() {
         }
         
         const data = await response.json()
-        const mapped = data.map(p => ({
-          id: p.id,
+        const mapped = data.map(p => normalizeProduct({
+          id: p.slug || String(p.id),
           type: p.type || 'Producto',
           title: p.title,
           subtitle: p.subtitle || '',
           description: p.description || '',
-          image: p.image,
-          price: `$${(p.price / 100).toFixed(0)}`,
+          image: p.image || '/coach.jpg',
+          price: typeof p.price === 'number' ? `$${(p.price / 100).toFixed(0)}` : p.price || '',
           features: p.features || [],
-          icon: BookOpen,
+          icon: p.icon || 'book',
           color: p.color || 'from-cyan-400 via-blue-500 to-cyan-600',
           accentColor: p.accentColor || 'blue'
         }))
@@ -284,8 +230,6 @@ export default function ProductosPage() {
                   <div
                     key={product.id}
                     className="group relative"
-                    onMouseEnter={() => setHoveredProduct(product.id)}
-                    onMouseLeave={() => setHoveredProduct(null)}
                     style={{ animationDelay: `${index * 150}ms` }}
                   >
                     <div className="relative bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden h-full transition-all duration-500 hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-2">
@@ -341,7 +285,7 @@ export default function ProductosPage() {
                         </div>
 
                         <button
-                          onClick={() => navigate(`/productos/${product.id}`)}
+                          onClick={() => navigate(`/productos/${product.id}`, { state: { product } })}
                           className={`w-full bg-gradient-to-r ${product.color} hover:shadow-2xl hover:shadow-blue-500/50 text-white font-bold text-lg py-6 transition-all duration-300 hover:scale-105 rounded-lg inline-flex items-center justify-center gap-2`}
                         >
                           Ver Detalles
